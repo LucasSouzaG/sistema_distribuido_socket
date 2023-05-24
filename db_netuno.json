@@ -1,0 +1,20 @@
+{
+    "login_members" : [
+        {
+            "user": "lucas",
+            "password": "senha123",
+            "type_user": "ADM"
+        },
+        {
+            "user": "joao",
+            "password": "senha123",
+            "type_user": "AL"
+        },
+        {
+            "user": "jose",
+            "password": "senha123",
+            "type_user": "PRO"
+        }
+    ]
+}
+  

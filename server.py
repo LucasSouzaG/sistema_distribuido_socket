@@ -1,3 +1,5 @@
+"""SERVIDOR"""
+
 import socket
 
 HOST = 'localhost'  # endereço IP do servidor, vazio significa todos os IPs disponíveis
@@ -24,7 +26,7 @@ while True:
     data = conn.recv(1024)
     if not data:
         break
-    print('Mensagem do Cliente:', repr(data))
+    print('Mensagem do Cliente:', repr(data)) #Nao sera necessario utilizar a funcao repr()
 
     # envia dados de volta ao cliente
     conn.sendall(b'Recebi sua mensagem')
