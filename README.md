@@ -1,5 +1,4 @@
 # Netune - Sistemas Distribuídos
-****
 
 **Autores**
 - Fernando Albuquerque
@@ -8,8 +7,6 @@
 - Nicolas Gonçalves
 - Nicolas Perejon
 - Vinicius Abe
-
-****
 
 ## Sobre o Projeto
 O _Netune Project_ tem por objetivo ser um estudo de caso sobre sistemas distribuídos. Neste repositório serão encontrados diferentes pequenos sistemas escritos em diferentes linguagens que demonstram a versatilidade da utilização de sistemas distribuídos.
