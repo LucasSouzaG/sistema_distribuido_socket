@@ -9,7 +9,7 @@ class Hub:
         self.host = '127.0.0.1'  # endereço IP do servidor, vazio significa todos os IPs disponíveis
         self.port = 5000  # porta para escutar as conexões
         self.create_socket = create_socket # cria socket
-        self.create_socket.bind((self.host, self.port))
+        self.create_socket.bind((self.host, self.port)) 
         # self.bind = 
 
 
