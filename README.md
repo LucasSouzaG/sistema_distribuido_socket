@@ -1,4 +1,4 @@
-# Netune - Sistemas Distribuídos
+# Neptune - Sistemas Distribuídos
 
 **Autores**
 - Fernando Albuquerque
@@ -9,7 +9,7 @@
 - Vinicius Abe
 
 ## Sobre o Projeto
-O _Netune Project_ tem por objetivo ser um estudo de caso sobre sistemas distribuídos. Neste repositório serão encontrados diferentes pequenos sistemas escritos em diferentes linguagens que demonstram a versatilidade da utilização de sistemas distribuídos.
+O _Neptune Project_ tem por objetivo ser um estudo de caso sobre sistemas distribuídos. Neste repositório serão encontrados diferentes pequenos sistemas escritos em diferentes linguagens que demonstram a versatilidade da utilização de sistemas distribuídos.
 
 #### O que é um sistema distribuído?
 Um sistema distribuído é um conjunto de componentes de software e hardware interconectados que trabalham juntos para realizar uma tarefa ou oferecer um serviço. Nesse tipo de sistema, múltiplos computadores ou dispositivos estão ligados em rede e colaboram entre si para alcançar um objetivo comum.
