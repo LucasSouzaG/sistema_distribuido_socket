@@ -2,35 +2,38 @@
 # Autor:
 # Data de Criação:
 
-import socket
-import os
+# pip install python-socketio
+# pip install flask-socketio
+# pip install eventlet
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-HOST = 'localhost'
-PORT = 5000
+from flask import Flask, render_template
+from flask_socketio import SocketIO
 
-# liga o socket ao endereço e porta especificados
-s.bind((HOST, PORT))
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your-secret-key'
+socketio = SocketIO(app, cors_allowed_origins="*")
 
-# espera por conexões
-s.listen(1)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-print('Servidor aguardando conexões...')
+@socketio.on('connect')
+def handle_connect():
+    print('Conexão estabelecida com o cliente')
+    socketio.send('Eae craque.')
 
-# aceita uma conexão
-conn, addr = s.accept()
-print('Conectado por', addr)
-input()
+@socketio.on('message')
+def handle_message(message):
+    print('Mensagem recebida:', message)
+    socketio.send('Você disse: ' + message)
 
-while True:
-    # recebe dados do cliente
-    data = conn.recv(1024)
-    if not data:
-        break
-    print('Mensagem do Cliente:', repr(data)) #Nao sera necessario utilizar a funcao repr()
+    # Enviar JSON em uma mensagem separada
+    data = {'name': 'John', 'age': 30}
+    socketio.emit('json_message', data)
 
-    # envia dados de volta ao cliente
-    conn.sendall(b'Recebi sua mensagem')
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Conexão fechada pelo cliente')
 
-# fecha a conexão
-conn.close()
+if __name__ == '__main__':
+    socketio.run(app, host='0.0.0.0', port=8080)
