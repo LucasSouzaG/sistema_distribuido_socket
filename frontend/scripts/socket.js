@@ -6,7 +6,7 @@ class SocketConnection {
         // Evento chamado quando a conexão é estabelecida
         this.socket.on('connect', () => {
             console.log(`Conexão estabelecida no servidor ${port}`);
-            socket.send('Imposto é roubo (cliente).');
+            socket.send(JSON.stringify({message: "Imposto é roubo"}));
         });
 
         // Evento chamado quando uma mensagem é recebida do servidor
@@ -26,6 +26,7 @@ class SocketConnection {
     connection(port) {}
 }
 
-new SocketConnection();
+// Realizar a reconexão com o servidor 
+// new SocketConnection();
 
-export default SocketConnection;
+// export default SocketConnection;
