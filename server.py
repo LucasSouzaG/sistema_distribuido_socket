@@ -2,7 +2,8 @@
 
 import socket
 
-HOST = 'localhost'  # endereço IP do servidor, vazio significa todos os IPs disponíveis
+# endereço IP do servidor, vazio significa todos os IPs disponíveis
+HOST = 'localhost'
 PORT = 5000  # porta para escutar as conexões
 
 # cria o socket
@@ -26,7 +27,8 @@ while True:
     data = conn.recv(1024)
     if not data:
         break
-    print('Mensagem do Cliente:', repr(data)) #Nao sera necessario utilizar a funcao repr()
+    # Nao sera necessario utilizar a funcao repr()
+    print('Mensagem do Cliente:', repr(data))
 
     # envia dados de volta ao cliente
     conn.sendall(b'Recebi sua mensagem')
