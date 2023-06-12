@@ -1,0 +1,49 @@
+{
+    "user_logins": [
+        {
+            "login": "fernandoabq555",
+            "password": "senha123",
+            "user_type": "adm"
+        },
+        {
+            "login": "igorbtl456",
+            "password": "senha123",
+            "user_type": "pro"
+        },
+        {
+            "login": "lucassza099",
+            "password": "senha123",
+            "user_type": "al"
+        },
+        {
+            "login": "nicolasprj777",
+            "password": "senha123",
+            "user_type": "adm"
+        },
+        {
+            "login": "nicolasgcv999",
+            "password": "senha123",
+            "user_type": "pro"
+        },
+        {
+            "login": "viniciusabe324",
+            "password": "senha123",
+            "user_type": "al"
+        },
+        {
+            "login": "anacla244",
+            "password": "senha123",
+            "user_type": "pro"
+        },
+        {
+            "login": "marusiaflo218",
+            "password": "senha123",
+            "user_type": "pro"
+        },
+        {
+            "login": "ceciliaand678",
+            "password": "senha123",
+            "user_type": "al"
+        }
+    ]
+}

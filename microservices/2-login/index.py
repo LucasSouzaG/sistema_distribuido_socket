@@ -2,35 +2,69 @@
 # Autor:
 # Data de Criação:
 
+# SERVIDOR
+
 import socket
-import os
+from json import load
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-HOST = 'localhost'
-PORT = 5001
+def create_socket():
+    try:
+        global host
+        global port 
+        global s
+        host = "localhost"
+        port = 5500
+        s = socket.socket() 
+    except socket.error as msg:
+        print("Erro ao tentar criar o socket_LOGIN: " + str(msg))
 
-# liga o socket ao endereço e porta especificados
-s.bind((HOST, PORT))
 
-# espera por conexões
-s.listen(1)
+def bind_socket():
+    try:
+        global host
+        global port
+        global s
 
-print('Servidor aguardando conexões...')
+        print("Bind_LOGIN na porta: " + str(port))
 
-# aceita uma conexão
-conn, addr = s.accept()
-print('Conectado por', addr)
-input()
+        s.bind((host, port))
+        s.listen(1) 
+    except socket.error as msg:
+        print("Erro ao dar bind_LOGIN: " + str(msg))
+    
 
-while True:
-    # recebe dados do cliente
-    data = conn.recv(1024)
-    if not data:
-        break
-    print('Mensagem do Cliente:', repr(data)) #Nao sera necessario utilizar a funcao repr()
+def socket_accept():
+    conn, address = s.accept()
+    print("[LOGIN] Conexão realisada com sucesso")
+    print('IP: ' + str(address[0]) + ' | Port: ' + str(address[1]))
+    login = conn.recv(1024).decode("utf-8")
+    typer_user = handle_login(login)
 
-    # envia dados de volta ao cliente
-    conn.sendall(b'Recebi sua mensagem')
+    if typer_user is not None:
+        conn.send(str.encode(typer_user))
+    else:
+        conn.sendall(b'Erro')
 
-# fecha a conexão
-conn.close()
+    print('[LOGIN-HUB] Conexão encerrada')
+    conn.close
+
+
+def handle_login(login):
+    with open('C:\\Users\\Nicol\\OneDrive\\Área de Trabalho\\sistDistr-trab-chamada\\sistema_distribuido_socket\\db_netuno.json', encoding='UTF-8') as db_data:
+        login_members = load(db_data)
+    
+    for login_member in login_members['login_members']:
+        if login == str(login_member['user'] + login_member['password']):
+            return login_member['type_user']
+        
+    return None
+        
+
+
+def main():
+    create_socket()
+    bind_socket()
+    socket_accept()
+
+
+main()

@@ -5,7 +5,8 @@ Uma simulação de um banco de dados de uma universidade, através de requisiç�
 ### Rotas
 | Rotas | Tipo |
 |------:|------|
-|/courses/|GET|
+|/logins/|GET|
 |/students/|GET|
 |/classes/|GET|
 |/professors/|GET|
+|/presenceCall|GET|

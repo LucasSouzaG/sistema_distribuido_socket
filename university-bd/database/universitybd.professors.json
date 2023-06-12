@@ -1,0 +1,24 @@
+{
+    "professors": [
+        {
+            "id": "1",
+            "login": "igorbtl456",
+            "name": "Igor Bertolacio"
+        },
+        {
+            "id": "2",
+            "login": "nicolasgcv999",
+            "name": "Nicolas Goncalves"
+        },
+        {
+            "id": "3",
+            "login": "anacla244",
+            "name": "Ana Clara"
+        },
+        {
+            "id": "4",
+            "login": "marusiaflo218",
+            "name": "Marusia Florido"
+        }
+    ]
+}
