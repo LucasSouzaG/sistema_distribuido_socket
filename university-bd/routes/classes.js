@@ -15,7 +15,7 @@ class Classes {
 
     getClasses() {
         const loadJSON = (path) => JSON.parse(fs.readFileSync(new URL(path, import.meta.url)));
-        const data = loadJSON('../database/universitydb.classes.json');
+        const data = loadJSON('../database/universitybd.classes.json');
         return data;
     }
 

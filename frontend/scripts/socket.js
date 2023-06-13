@@ -6,7 +6,10 @@ class SocketConnection {
         // Evento chamado quando a conexão é estabelecida
         this.socket.on('connect', () => {
             console.log(`Conexão estabelecida no servidor ${port}`);
-            socket.send(JSON.stringify({message: "Imposto é roubo"}));
+            // ACESSO INVALIDO
+            socket.send(JSON.stringify({login: "lucassza099", password: "senha12"}));
+            // ACESSO VALIDO
+            socket.send(JSON.stringify({login: "lucassza099", password: "senha123"}));
         });
 
         // Evento chamado quando uma mensagem é recebida do servidor
@@ -29,4 +32,4 @@ class SocketConnection {
 // Realizar a reconexão com o servidor 
 // new SocketConnection();
 
-// export default SocketConnection;
+export default SocketConnection;

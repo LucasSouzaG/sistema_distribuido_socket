@@ -15,7 +15,7 @@ class Logins {
 
     getLogins() {
         const loadJSON = (path) => JSON.parse(fs.readFileSync(new URL(path, import.meta.url)));
-        const data = loadJSON('../database/universitydb.login.json');
+        const data = loadJSON('../database/universitybd.login.json');
         return data;
     }
 
