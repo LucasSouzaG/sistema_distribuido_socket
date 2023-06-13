@@ -2,13 +2,9 @@
 # Autor:
 # Data de Criação:
 
-# pip install python-socketio
-# pip install flask-socketio
-# pip install eventlet
-
 from flask import Flask, render_template
 from flask_socketio import SocketIO
-import requests
+from utils import login
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
@@ -25,20 +21,13 @@ def handle_connect():
 
 @socketio.on('message')
 def handle_message(message):
-    print('Mensagem recebida:', message)
-
-    # Consultar dados do Banco de Dados
-    get_students = requests.get('http://localhost:3000/students/')
-    print(get_students.status_code)
-    print(get_students.json())
-
-    # Enviar JSON em uma mensagem separada
-    # data = {'name': 'John', 'age': 30}
-    # socketio.emit('json_message', data)
+    print('Mensagem recebida:', message, type(message))
+    access = login(message)
+    socketio.emit('json_message', {'message': access})
 
 @socketio.on('disconnect')
 def handle_disconnect():
     print('Conexão fechada pelo cliente')
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=8080)
+    socketio.run(app, host='localhost', port=8080)
