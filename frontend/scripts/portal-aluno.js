@@ -23,22 +23,13 @@ class PortalAluno {
 
     presence(code, step) {
         this.socketConnection.send(JSON.stringify({code, step}));
-        // Acesso Valido: {"login":"lucassza099","password":"senha123"}    
-
-        this.socketConnection.on('json_message', function(data) {
+        // ON 'PRESENCA'    
+        this.socketConnection.on('presenca', function(data) {
            const response = data;
            if(typeof(response) == 'object') {
-            localStorage.setItem('user', JSON.stringify(response));
+            alert('Presença confirmada');
            } else {
-            /*if (!document.querySelector('.error')) {
-                // add p error after form
-                const p = document.createElement('p');
-                p.textContent = 'Login ou senha incorretos';
-                p.style.color = 'red';
-                p.style.marginTop = '20px';
-                p.classList.add('error');
-                loginClass.form.appendChild(p);
-            }*/
+            alert('Código inválido, por favor contate seu professor ou revise seu código');
            }
         });
     }
