@@ -10,25 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../styles/reset.css" />
     <link rel="stylesheet" href="../styles/app.css" />
-    <link rel="stylesheet" href="../styles/login.css" />
+    <link rel="stylesheet" href="../styles/header.css" />
+    <link rel="stylesheet" href="../styles/portal-aluno.css" />
 </head>
 <body>
-    <div class="container">
+    <header>
         <div class="logo">
-            <img src="../assets/logo.png" />
+            <img src="../assets/logo-branco.png" />
             <h1>Neptune</h1>
         </div>
-        <form id="login">
-            <div class="label">
-                <label for="login">Login</label>
-                <input type="text" id="login" />
-            </div>
-            <div class="label">
-                <label for="password">Senha</label>
-                <input type="password" id="password" />
-            </div>
-            <input type="submit" value="Entrar" />
-        </form>
+    </header>
+    <div class="container-geral">
+        <h2>Portal do Aluno</h2>
     </div>
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
     <script type="module" src="scripts/app.js"></script>

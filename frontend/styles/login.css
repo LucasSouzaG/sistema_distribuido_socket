@@ -1,0 +1,85 @@
+.container {
+    background-color: #F0F7FB;
+    min-height: 800px;
+    max-width: 400px;
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.container .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .logo img {
+    max-width: 300px;
+}
+
+.container .logo h1 {
+    text-transform: uppercase;
+    color: #064787;
+    font-size: 1.8em;
+    margin-top: -30px;
+}
+
+.container form {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.label {
+    margin: 20px 0;
+    width: 250px;
+}
+
+.label label {
+    text-transform: uppercase;
+    color: #064787;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.label input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid #064787;
+    outline: none;
+    padding: 10px 0;
+}
+
+input[type="submit"] {
+    background-color: #064787;
+    color: #FFF;
+    width: 100%;
+    border: none;
+    padding: 15px 0;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-family: 'Sen', sans-serif;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+input[type="submit"]:hover {
+    background-color: #0a3866;
+    color: #FFF;
+    cursor: pointer;
+}
+
+
+.container form input[type="submit"] {
+    width: 250px;
+    margin-top: 20px;
+}

@@ -1,0 +1,27 @@
+header {
+    width: 100vw;
+    height: 100px;
+    background-color: #013E7C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+header .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header .logo img {
+    max-width: 80px;
+}
+
+header .logo h1 {
+    text-transform: uppercase;
+    color: #064787;
+    font-size: 1.1em;
+    color: #FFF;
+}
