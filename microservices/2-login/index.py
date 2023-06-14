@@ -1,19 +1,20 @@
-# Nome do Microsserviço:
-# Autor:
-# Data de Criação:
+# Nome do Microsserviço: socket login
+# Autor: Nicolas Gonçalves
+# Data de Criação: 12/06/2023
 
 # SERVIDOR
 
 import socket
 from json import load
+from requests import get
 
 def create_socket():
     try:
         global host
         global port 
         global s
-        host = "localhost"
-        port = 5500
+        host = "127.0.0.2"
+        port = 8080
         s = socket.socket() 
     except socket.error as msg:
         print("Erro ao tentar criar o socket_LOGIN: " + str(msg))
@@ -37,27 +38,59 @@ def socket_accept():
     conn, address = s.accept()
     print("[LOGIN] Conexão realisada com sucesso")
     print('IP: ' + str(address[0]) + ' | Port: ' + str(address[1]))
-    login = conn.recv(1024).decode("utf-8")
-    typer_user = handle_login(login)
 
-    if typer_user is not None:
-        conn.send(str.encode(typer_user))
-    else:
-        conn.sendall(b'Erro')
+    msg_not_found = 'Not Found'
+    msg_bd_error = 'BF Access Error'
+    
+    # vai rodar até receber o tipo de usuário e o nome dele da função handle_login
+    while True:
+        login = conn.recv(1024).decode("utf-8")
+        typer_user = handle_login(login)
+
+        if typer_user == msg_not_found: 
+            conn.send(str.encode(msg_not_found))
+        elif typer_user == msg_bd_error:
+            conn.send(str.encode(msg_bd_error))
+        else:
+            conn.send(str.encode(typer_user))
+            break 
 
     print('[LOGIN-HUB] Conexão encerrada')
     conn.close
 
-
+# colocar o try e except, no except tentar se conectar com o bd backup
+# se não conseguir acessar nesse tbm, retorna falando que 
+# não é possível acessar ao banco por enquanto
 def handle_login(login):
-    with open('C:\\Users\\Nicol\\OneDrive\\Área de Trabalho\\sistDistr-trab-chamada\\sistema_distribuido_socket\\db_netuno.json', encoding='UTF-8') as db_data:
-        login_members = load(db_data)
-    
-    for login_member in login_members['login_members']:
-        if login == str(login_member['user'] + login_member['password']):
-            return login_member['type_user']
+    try:
+        users = get('http://localhost:3000/logins/')
+        login_members = users.json()
         
-    return None
+        for login_member in login_members['user_logins']:
+            if login == str(login_member['login'] + login_member['password']):
+                r_user_type = '{"user_type":' + '"' + str(login_member["user_type"]) + '",'
+                r_user_name = '"name":' + '"' + str(login_member["name"]) + '"}'
+                response = str(r_user_type + r_user_name)
+                return response
+            
+        return 'Not Found'
+    except:
+        try:
+            user_bk = get('http://localhost:3001/logins/')
+            login_members_bk = user_bk.json()
+
+            for login_member in login_members_bk['user_logins']:
+                if login == str(login_member['login'] + login_member['password']):
+                    r_user_type = '{"user_type":' + '"' + str(login_member["user_type"]) + '",'
+                    r_user_name = '"name":' + '"' + str(login_member["name"]) + '"}'
+                    response = str(r_user_type + r_user_name)
+                    return response
+            
+            return 'Not Found'
+        except:
+            return 'BD Access Error'
+        
+
 
 def main():
     create_socket()
