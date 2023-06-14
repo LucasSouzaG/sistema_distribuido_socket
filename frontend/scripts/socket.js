@@ -30,6 +30,6 @@ class SocketConnection {
 }
 
 // Realizar a reconexão com o servidor 
-// new SocketConnection();
+new SocketConnection();
 
 export default SocketConnection;
