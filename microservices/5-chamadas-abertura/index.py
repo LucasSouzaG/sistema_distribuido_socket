@@ -1,36 +1,50 @@
-# Nome do Microsserviço:
-# Autor:
-# Data de Criação:
+# Nome do Microsserviço: chamadas-abertura
+# Autor: Nicolas G
+# Data de Criação: 14/06/2023
+
+
+# Esse serviço será usado pelo perfil de professor
 
 import socket
-import os
+from requests import get
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-HOST = 'localhost'
-PORT = 5005
+def create_socket():
+    try:
+        global s
+        global host
+        global port
+        s = socket.socket()
+        host = "127.0.0.2"
+        port = "8060"
+    except socket.error as msg:
+        print("Erro ao tentar criar socket_CHAMADAS_ABERTURA: " + str(msg))
 
-# liga o socket ao endereço e porta especificados
-s.bind((HOST, PORT))
+def bind_socket():
+    try:
+        global s
+        global host
+        global port
 
-# espera por conexões
-s.listen(1)
+        print("Bind_CHAMADAS_ABERTURA na porta: " + str(port))
 
-print('Servidor aguardando conexões...')
+        s.bind((host, port))
+        s.listen(30)
+    except socket.error as msg:
+        print("Erro ao tentar bind__CHAMADAS_ABERTURA: " + str(msg))
 
-# aceita uma conexão
-conn, addr = s.accept()
-print('Conectado por', addr)
-input()
+def socket_accept():
+    conn, address = s.accept()
+    print("[CHAMADAS_ABERTURA] Conexão realizada com sucesso")
+    print("IP: " + str(address[0]) + " | Port: " + str(address[1]))
 
-while True:
-    # recebe dados do cliente
-    data = conn.recv(1024)
-    if not data:
-        break
-    print('Mensagem do Cliente:', repr(data)) #Nao sera necessario utilizar a funcao repr()
+    # Espero o login do prefessor como resposta e o código da classe
+    # {"login": "igorbtl456", "code_name": "sisdis",}
+    data_class = conn.recv(1024).decode("utf-8")
+    
+    # DÙVIDAS:
+    # Como o professor vai selecionar qual matéria ele quer fazer a chamada?
 
-    # envia dados de volta ao cliente
-    conn.sendall(b'Recebi sua mensagem')
+    # -- terminar função
 
-# fecha a conexão
-conn.close()
+# def open_presence_call(data_class):
+#     # chamar o main do serviço
