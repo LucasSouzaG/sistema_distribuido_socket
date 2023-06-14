@@ -4,8 +4,9 @@
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO
-from socketIO_client import SocketIO
 from utils import login
+from socketio import Client
+import subprocess
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
@@ -23,7 +24,10 @@ def handle_connect():
 @socketio.on('message')
 def handle_message(message):
     print('Mensagem recebida:', message, type(message))
-    client_login = SocketIO('localhost/login', 8080)
+    login = Client()
+    login.connect('http://127.0.0.2:8080')
+    login.wait()
+    
     # access = login(message)
     # socketio.emit('json_message', {'message': access})
 
