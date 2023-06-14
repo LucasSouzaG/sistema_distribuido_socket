@@ -36,49 +36,6 @@
     justify-content: center;
 }
 
-.label {
-    margin: 20px 0;
-    width: 250px;
-}
-
-.label label {
-    text-transform: uppercase;
-    color: #064787;
-    font-weight: 600;
-    font-size: 0.9em;
-}
-
-.label input {
-    width: 100%;
-    border: none;
-    background-color: transparent;
-    border-bottom: 2px solid #064787;
-    outline: none;
-    padding: 10px 0;
-}
-
-input[type="submit"] {
-    background-color: #064787;
-    color: #FFF;
-    width: 100%;
-    border: none;
-    padding: 15px 0;
-    margin: 0;
-    box-sizing: border-box;
-    border-radius: 8px;
-    font-family: 'Sen', sans-serif;
-    font-size: 1.1em;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-input[type="submit"]:hover {
-    background-color: #0a3866;
-    color: #FFF;
-    cursor: pointer;
-}
-
-
 .container form input[type="submit"] {
     width: 250px;
     margin-top: 20px;
