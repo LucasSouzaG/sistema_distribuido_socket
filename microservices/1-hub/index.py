@@ -4,6 +4,7 @@
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO
+from socketIO_client import SocketIO
 from utils import login
 
 app = Flask(__name__)
@@ -22,8 +23,9 @@ def handle_connect():
 @socketio.on('message')
 def handle_message(message):
     print('Mensagem recebida:', message, type(message))
-    access = login(message)
-    socketio.emit('json_message', {'message': access})
+    client_login = SocketIO('localhost/login', 8080)
+    # access = login(message)
+    # socketio.emit('json_message', {'message': access})
 
 @socketio.on('disconnect')
 def handle_disconnect():
