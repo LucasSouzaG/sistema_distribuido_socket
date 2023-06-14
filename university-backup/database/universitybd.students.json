@@ -1,0 +1,25 @@
+{
+    "student": [
+        {
+            "id": "1",
+            "login": "lucassza099",
+            "course": "eng-comp",
+            "name": "Lucas Souza",
+            "semester": "7"
+        },
+        {
+            "id": "2",
+            "login": "viniciusabe324",
+            "course": "eng-comp",
+            "name": "Vinicius Abe",
+            "semester": "7"
+        },
+        {
+            "id": "3",
+            "login": "ceciliaand678",
+            "course": "eng-comp",
+            "name": "Cecilia Andradade",
+            "semester": "1"
+        }
+    ]
+}
