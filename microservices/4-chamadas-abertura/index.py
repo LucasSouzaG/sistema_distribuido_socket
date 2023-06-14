@@ -37,14 +37,5 @@ def socket_accept():
     print("[CHAMADAS_ABERTURA] Conexão realizada com sucesso")
     print("IP: " + str(address[0]) + " | Port: " + str(address[1]))
 
-    # Espero o login do prefessor como resposta e o código da classe
-    # {"login": "igorbtl456", "code_name": "sisdis",}
     data_class = conn.recv(1024).decode("utf-8")
     
-    # DÙVIDAS:
-    # Como o professor vai selecionar qual matéria ele quer fazer a chamada?
-
-    # -- terminar função
-
-# def open_presence_call(data_class):
-#     # chamar o main do serviço

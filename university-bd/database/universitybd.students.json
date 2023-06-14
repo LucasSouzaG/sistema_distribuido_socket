@@ -20,6 +20,20 @@
             "course": "eng-comp",
             "name": "Cecilia Andradade",
             "semester": "1"
+        },
+        {
+            "id": "4",
+            "login": "fernandoabq555",
+            "course": "eng-comp",
+            "name": "Fernando",
+            "semester": "7"
+        },
+        {
+            "id": "5",
+            "login": "igorbtl456",
+            "course": "eng-comp",
+            "name": "Igor",
+            "semester": "3"
         }
     ]
 }

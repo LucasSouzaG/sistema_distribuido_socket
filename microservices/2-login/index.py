@@ -36,7 +36,7 @@ def bind_socket():
 
 def socket_accept():
     conn, address = s.accept()
-    print("[LOGIN] Conexão realisada com sucesso")
+    print("[LOGIN] Conexão realizada com sucesso")
     print('IP: ' + str(address[0]) + ' | Port: ' + str(address[1]))
 
     msg_not_found = 'Not Found'
@@ -77,7 +77,7 @@ def handle_login(login):
         return 'Not Found'
     except:
         try:
-            user_bk = get('http://localhost:3001/logins/')
+            user_bk = get('http://localhost:3004/logins/')
             login_members_bk = user_bk.json()
 
             for login_member in login_members_bk['user_logins']:

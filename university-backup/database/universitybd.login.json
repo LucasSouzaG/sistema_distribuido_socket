@@ -3,13 +3,13 @@
         {
             "login": "fernandoabq555",
             "password": "senha123",
-            "user_type": "adm",
-            "name": "Lucas Alburquerque"
+            "user_type": "al",
+            "name": "Fernando"
         },
         {
             "login": "igorbtl456",
             "password": "senha123",
-            "user_type": "pro",
+            "user_type": "al",
             "name": "Igor Bertolacio"
         },
         {
@@ -21,7 +21,7 @@
         {
             "login": "nicolasprj777",
             "password": "senha123",
-            "user_type": "adm",
+            "user_type": "al",
             "name": "Nicolas Perejon"
         },
         {

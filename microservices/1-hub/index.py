@@ -32,7 +32,6 @@ def handle_message(message):
         LOGIN_ = message['login']
     except:
         ...
-    
 
     if message['step'] == 'login':
         login = socket.socket()
@@ -50,12 +49,10 @@ def handle_message(message):
         except:
             print('Não foi possivel realizar o login')
             subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\2-login && py index.py"', shell=True)
-
     
     elif message['step'] == 'portal-aluno':
         aluno = socket.socket()
         aluno.connect(('127.0.0.2', 8065))
-        #{"login": "lucassza099", "key": "sisdis"}
         aluno.send(str.encode(json.dumps({'login' : LOGIN_, 'key' : message['code']})))
         response_server_aluno = aluno.recv(1024).decode('UTF-8')
         print(f'[STATUS]: {response_server_aluno}')
@@ -64,7 +61,7 @@ def handle_message(message):
             socketio.emit('json_message', {'status': True})
         else:
             print('[STATUS]: Não foi possivel realizar a chamada')
-            subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\4-chamadas-respostas && py index.py"', shell=True)
+            subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\3-chamadas-respostas && py index.py"', shell=True)
             socketio.emit('json_message', {'status': False})
 
 @socketio.on('disconnect')
@@ -73,15 +70,9 @@ def handle_disconnect():
 
 if __name__ == '__main__':
     #ATENÇÃO VOCE PRECISA ALTERAR DOS ARQUIVOS ABAIXO DE ACORDO COM A SUA MAQUINA!!!
-    # subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\university-bd && node index.js"', shell=True)
+    subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\university-bd && node index.js"', shell=True)
     subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\university-backup && node index.js"', shell=True)
     subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\2-login && py index.py"', shell=True)
-    subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\4-chamadas-respostas && py index.py"', shell=True)
-    
-    # Nicolas
-    # subprocess.Popen('start cmd /K "cd C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\sistema_distribuido_socket\\university-bd && node index.js"', shell=True)
-    # subprocess.Popen('start cmd /K "cd C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\sistema_distribuido_socket\\university-backup && node index.js"', shell=True)
-    # subprocess.Popen('start cmd /K "cd C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\sistema_distribuido_socket\\microservices\\2-login && py index.py"', shell=True)
-    # subprocess.Popen('start cmd /K "cd C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\sistema_distribuido_socket\\microservices\\4-chamadas-respostas && py index.py"', shell=True)
+    subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\3-chamadas-respostas && py index.py"', shell=True)
     
     socketio.run(app, host='localhost', port=8080)
