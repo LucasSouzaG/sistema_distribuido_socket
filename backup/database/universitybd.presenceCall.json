@@ -1,0 +1,10 @@
+{
+    "presence_call": [
+        {
+            "class_id": "a",
+            "student_id": "a",
+            "presence": "a",
+            "presence_date": "a"
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "classes": [
+        {
+            "name": "sistemas distribuidos",
+            "code_name": "sisdis",
+            "professor_id": "1",
+            "course": "eng-comp",
+            "semester": "7",
+            "id": "1"
+        },
+        {
+            "name": "etica crista",
+            "code_name": "eticri",
+            "professor_id": "2",
+            "course": "eng-comp",
+            "semester": "7",
+            "id": "2"
+        },
+        {
+            "name": "logica computacional",
+            "code_name": "logcom",
+            "professor_id": "",
+            "course": "eng-comp",
+            "semester": "1",
+            "id": "3"
+        }
+    ]
+}
