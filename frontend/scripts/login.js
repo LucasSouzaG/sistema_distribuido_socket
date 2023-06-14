@@ -26,7 +26,7 @@ class Login {
         this.socketConnection.on('json_message', function(data) {
            const response = data;
            if(typeof(response) === 'object') {
-            localStorage.setItem('user', JSON.stringify(response.message));
+            localStorage.setItem('user', JSON.stringify(response));
             window.location.href ='http://127.0.0.1:5500/frontend/pages/portal-aluno.html'
            } else {
             if (!document.querySelector('.error')) {
