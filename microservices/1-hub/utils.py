@@ -15,7 +15,7 @@ def login(message):
     for value in response_data['user_logins']:
 
         if ((value['login'].upper() == login.upper()) and (value['password'].upper() == password.upper())):
-            by_pass = True
+            by_pass = value
     
     return by_pass
         
