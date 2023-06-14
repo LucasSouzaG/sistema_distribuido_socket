@@ -53,9 +53,15 @@ def handle_disconnect():
 
 if __name__ == '__main__':
     #ATENÇÃO VOCE PRECISA ALTERAR DOS ARQUIVOS ABAIXO DE ACORDO COM A SUA MAQUINA!!!
-    subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\university-bd && node index.js"', shell=True)
-    subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\university-backup && node index.js"', shell=True)
-    subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\2-login && py index.py"', shell=True)
-    subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\4-chamadas-respostas && py index.py"', shell=True)
+    # subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\university-bd && node index.js"', shell=True)
+    # subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\university-backup && node index.js"', shell=True)
+    # subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\2-login && py index.py"', shell=True)
+    # subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\4-chamadas-respostas && py index.py"', shell=True)
+    
+    # Nicolas
+    subprocess.Popen('start cmd /K "cd C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\sistema_distribuido_socket\\university-bd && node index.js"', shell=True)
+    subprocess.Popen('start cmd /K "cd C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\sistema_distribuido_socket\\university-backup && node index.js"', shell=True)
+    subprocess.Popen('start cmd /K "cd C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\sistema_distribuido_socket\\microservices\\2-login && py index.py"', shell=True)
+    subprocess.Popen('start cmd /K "cd C:\\Users\\nicol\\OneDrive\\Documentos\\GitHub\\sistema_distribuido_socket\\microservices\\4-chamadas-respostas && py index.py"', shell=True)
     
     socketio.run(app, host='localhost', port=8080)

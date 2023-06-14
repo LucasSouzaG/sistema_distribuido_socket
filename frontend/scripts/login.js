@@ -1,5 +1,4 @@
 import SocketConnection from './socket.js';
-import './login.js';
 import './storage.js';
 
 class Login {

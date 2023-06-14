@@ -1,4 +1,4 @@
-form#class {
+form#portal-aluno-form {
     margin-top: 50px;
     display: flex;
     flex-direction: column;
@@ -6,7 +6,7 @@ form#class {
     justify-content: center;
 }
 
-form#class input[type="submit"] {
+form#portal-aluno-form input[type="submit"] {
     width: 250px;
     margin-top: 20px;
 }
