@@ -25,8 +25,9 @@ class Login {
 
         this.socketConnection.on('json_message', function(data) {
            const response = data;
-           if(response.message) {
-            //window.location.href ='http://127.0.0.1:5500/frontend/pages/portal-aluno.html'
+           if(typeof(response) === 'object') {
+            localStorage.setItem('user', JSON.stringify(response.message));
+            window.location.href ='http://127.0.0.1:5500/frontend/pages/portal-aluno.html'
            } else {
             if (!document.querySelector('.error')) {
                 // add p error after form
