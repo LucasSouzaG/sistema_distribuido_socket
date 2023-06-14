@@ -38,11 +38,8 @@ def socket_accept():
     print("[RESPOSTA-CHAMADA] Conexão realizada com sucesso")
     print("IP: " + str(address[0]) + " | Port: " + str(address[1]))
 
-    # envia mensagem para validar o acesso
-    # SEND X.1
-    conn.send(str.encode("Conectado ao serviço RESPOSTA-CHAMADA"))
-
     count_limit = 0
+
     while True:
         # recebe dados da resposta da chamada
         # RECV Y.1
@@ -51,26 +48,37 @@ def socket_accept():
 
         presence_call_data = conn.recv(1024).decode("utf-8")
         rp_valid = valid_pc_data(presence_call_data)
-        if rp_valid[0] == 'k':
+        
+
+        if rp_valid == 'Chamada realizada com sucesso':
             conn.send(str.encode(rp_valid))
             break
         elif count_limit == 3:
             conn.send(str.encode("Desculpe, você excedeu o número de tentativas, vamos fechar a conexão agora"))
             break
     
-    conn.send(str.encode(rp_valid))
     conn.close()
 
 def valid_pc_data(data):
 
-    login = json.loads(data["login"])
-    key = json.loads(data["key"])
+    data = json.loads(data)
+    login = data["login"]
+    key = data["key"]
+    by_pass = 'Algo deu errado'
 
-    students = get('http://localhost:3000/students/')
-    all_students = students.json()
+    try:
+        students = get('http://localhost:3000/students/')
+        all_students = students.json()
+    except:
+        students = get('http://localhost:3001/students/')
+        all_students = students.json()
 
-    classes = get('http://localhost:3000/classes/')
-    all_classes = classes.json()
+    try:
+        classes = get('http://localhost:3000/classes/')
+        all_classes = classes.json()
+    except:
+        classes = get('http://localhost:3001/classes/')
+        all_classes = classes.json()
 
     for cl in all_classes["classes"]:
         if key == cl["code_name"]:
@@ -85,9 +93,11 @@ def valid_pc_data(data):
             break
 
     if (key_valid and login_valid) and (semester_cl == semester_st):
-        return "k: Chamada realizada com sucesso"
+        by_pass = 'Chamada realizada com sucesso'
+    else:
+        return by_pass
     
-    return "n-ok: Algo deu errado"
+    return by_pass
 
 
 def main():

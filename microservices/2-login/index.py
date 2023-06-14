@@ -45,6 +45,7 @@ def socket_accept():
     # vai rodar até receber o tipo de usuário e o nome dele da função handle_login
     while True:
         login = conn.recv(1024).decode("utf-8")
+
         typer_user = handle_login(login)
 
         if typer_user == msg_not_found: 
