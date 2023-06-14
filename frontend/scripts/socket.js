@@ -1,17 +1,11 @@
 class SocketConnection {
     constructor(port) {
-        const socket = io(`http://localhost:${port}`);
-        this.socket = socket;
-        
-        // Evento chamado quando a conexão é estabelecida
-        this.socket.on('connect', () => {
-            console.log(`Conexão estabelecida no servidor ${port}`);
-            // ACESSO INVALIDO
-            socket.send(JSON.stringify({login: "lucassza099", password: "senha12"}));
-            // ACESSO VALIDO
-            socket.send(JSON.stringify({login: "lucassza099", password: "senha123"}));
-        });
+        this.connection(port);
+    }
 
+    connection(port) {
+        this.socket = io(`http://localhost:${port}`);
+        // Evento chamado quando a conexão é estabelecida
         // Evento chamado quando uma mensagem é recebida do servidor
         this.socket.on('message', function(data) {
             console.log('Dados recebidos do servidor:', data);
@@ -25,8 +19,13 @@ class SocketConnection {
         this.socket.on('disconnect', function() {
             console.log('Conexão fechada');
         });
+
+        return this.socket;
     }
-    connection(port) {}
+
+    disconnect() {
+        this.socket.disconnect();
+    }
 }
 
 // Realizar a reconexão com o servidor 
