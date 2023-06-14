@@ -24,33 +24,38 @@ def handle_connect():
 
 @socketio.on('message')
 def handle_message(message):
-    print('Mensagem recebida:', message, type(json.loads(message)))   
+    print('Mensagem recebida:', message)   
+    message = json.loads(message)
 
-    if message == 'login':
+    if message['step'] == 'login':
         login = socket.socket()
         login.connect(('127.0.0.2', 8080))
-        login.send(str.encode(f"{json.loads(message)['login']}{json.loads(message)['password']}"))
-        response_server = login.recv(1024).decode('UTF-8')
-        response_server = json.loads(response_server)
+        login.send(str.encode(f"{message['login']}{message['password']}"))
+        response_server_login = login.recv(1024).decode('UTF-8')
+        response_server_login = json.loads(response_server_login)
 
-        if type(response_server) is dict:
-            socketio.emit('json_message', response_server)
+        if response_server_login['user_type'] != None :
+            socketio.emit('json_message', response_server_login)
     
-    elif message == 'portal-aluno':
-        #Se user_type = al conectar com chamadas_respostas
-        if response_server['user_type'] == 'al':
-            login = socket.socket()
-            login.connect(('127.0.0.2', 8080))
+    elif message['step'] == 'portal-aluno':
+        if response_server_login['user_type'] == 'al':
+            aluno = socket.socket()
+            aluno.connect(('127.0.0.2', 8065))
+            aluno.send(str.encode({"login": "lucassza099", "key": "sisdis"}))
+            response_server_aluno = login.recv(1024).decode('UTF-8')  
 
+        if type(response_server_aluno) is dict:
+            socketio.emit('json_message', response_server_aluno)
 
 @socketio.on('disconnect')
 def handle_disconnect():
     print('Conexão fechada pelo cliente')
 
 if __name__ == '__main__':
+    #ATENÇÃO VOCE PRECISA ALTERAR DOS ARQUIVOS ABAIXO DE ACORDO COM A SUA MAQUINA!!!
     subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\university-bd && node index.js"', shell=True)
-    subprocess.Popen('start cmd /K "C:\\Back_LEOO\\sistema_distribuido_socket\\university-backup && node index.js"', shell=True)
-    subprocess.Popen('start cmd /K "cd C:\Back_LEOO\sistema_distribuido_socket\microservices\\2-login && py index.py"', shell=True)
+    subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\university-backup && node index.js"', shell=True)
+    subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\2-login && py index.py"', shell=True)
     subprocess.Popen('start cmd /K "cd C:\\Back_LEOO\\sistema_distribuido_socket\\microservices\\4-chamadas-respostas && py index.py"', shell=True)
     
     socketio.run(app, host='localhost', port=8080)

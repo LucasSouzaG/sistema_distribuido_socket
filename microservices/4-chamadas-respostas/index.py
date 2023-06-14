@@ -15,7 +15,7 @@ def create_socket():
         global port
         s = socket.socket()
         host = "127.0.0.2"
-        port = "8065"
+        port = 8065
     except socket.error as msg:
         print("Erro ao tentar criar socket_RESPOSTA-CHAMADA: " + str(msg))
 
