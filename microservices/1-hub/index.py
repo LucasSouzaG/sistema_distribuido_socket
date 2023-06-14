@@ -34,7 +34,6 @@ def handle_message(message):
 
     if type(response_server) is dict:
         return socketio.emit('json_message', response_server)
-    
 
 @socketio.on('disconnect')
 def handle_disconnect():
