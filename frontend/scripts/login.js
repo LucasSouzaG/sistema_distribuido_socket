@@ -15,12 +15,13 @@ class Login {
             event.preventDefault();
             const login = loginForm.login.value;
             const password = loginForm.password.value;
-            loginClass.authentication(login, password);
+            const step = 'login'
+            loginClass.authentication(login, password, step);
         });
     }
 
-    authentication(login, password) {
-        this.socketConnection.send(JSON.stringify({login, password}));
+    authentication(login, password, step) {
+        this.socketConnection.send(JSON.stringify({login, password, step}));
         // Acesso Valido: {"login":"lucassza099","password":"senha123"}    
 
         this.socketConnection.on('json_message', function(data) {
