@@ -5,8 +5,8 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO
 from utils import login
-from socketio import Client
 import subprocess
+import socket
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
@@ -23,11 +23,12 @@ def handle_connect():
 
 @socketio.on('message')
 def handle_message(message):
-    print('Mensagem recebida:', message, type(message))
-    login = Client()
-    login.connect('http://127.0.0.2:8080')
-    login.wait()
+    print('Mensagem recebida:', message, type(message))   
     
+    login = socket.socket()
+    login.connect(('127.0.0.2', 5501))
+    login.send(str.encode(message))
+
     # access = login(message)
     # socketio.emit('json_message', {'message': access})
 
@@ -36,4 +37,7 @@ def handle_disconnect():
     print('Conexão fechada pelo cliente')
 
 if __name__ == '__main__':
+
+    subprocess.Popen('start cmd /K "cd C:\Projetos\sistema_distribuido_socket\microservices\\2-login && py main.py"', shell=True)
+    
     socketio.run(app, host='localhost', port=8080)
