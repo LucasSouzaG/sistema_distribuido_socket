@@ -24,9 +24,9 @@ class PortalAluno {
     presence(code, step) {
         this.socketConnection.send(JSON.stringify({code, step}));
         // ON 'PRESENCA'    
-        this.socketConnection.on('presenca', function(data) {
+        this.socketConnection.on('json_message', function(data) {
            const response = data;
-           if(typeof(response) == 'object') {
+           if(response == 'true') {
             alert('Presença confirmada');
            } else {
             alert('Código inválido, por favor contate seu professor ou revise seu código');
