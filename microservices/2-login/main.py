@@ -1,9 +1,7 @@
-from flask import Flask, render_template
-from flask_socketio import SocketIO
 import socket
 
 # endereço IP do servidor, vazio significa todos os IPs disponíveis
-HOST = 'localhost/login'
+HOST = '127.0.0.2'
 PORT = 8080  # porta para escutar as conexões
 
 # cria o socket
@@ -20,3 +18,8 @@ print('Servidor aguardando conexões...')
 conn, addr = s.accept()
 print('Conectado por', addr)
 input()
+# envia dados de volta ao cliente
+conn.sendall(b'Recebi sua mensagem')
+
+# fecha a conexão
+conn.close()

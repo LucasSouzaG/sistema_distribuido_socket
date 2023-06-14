@@ -58,8 +58,6 @@ def handle_login(login):
             return login_member['type_user']
         
     return None
-        
-
 
 def main():
     create_socket()
